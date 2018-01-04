@@ -10,18 +10,6 @@ namespace WpfApp1
     {
         public bool WindowClosed { set; get; }
 
-        private bool enabled;
-
-        public bool Enabled
-        {
-            get => enabled;
-            set
-            {
-                enabled = value;
-                NotifyPropertyChanged(nameof(Enabled));
-            }
-        }
-
         public Window1()
         {
             this.DataContext = this;
@@ -33,19 +21,7 @@ namespace WpfApp1
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (enabled)
-            {
-                var mainWin = App.Current.MainWindow as MainWindow;
-                try
-                {
-                    int i = int.Parse(MyTextBox.Text);
-                    mainWin.MyDataGridSelectRow(i);
-                }
-                catch
-                {
-
-                }
-            }
+            
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -64,16 +40,19 @@ namespace WpfApp1
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Enabled = true;
-        }
+            var mainWin = App.Current.MainWindow as MainWindow;
+            try
+            {
+                int i = int.Parse(MyTextBox.Text);
+                mainWin.MyDataGridSelectRow(i);
+                this.Close();
+            }
+            catch
+            {
 
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Enabled = false;
+            }
         }
-
-        
     }
 }

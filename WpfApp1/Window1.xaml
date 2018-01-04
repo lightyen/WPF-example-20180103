@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window1" Height="300" Width="300">
     <Grid>
-        <TextBox x:Name="MyTextBox" HorizontalAlignment="Left" Margin="123,101,0,0" IsEnabled="{Binding Enabled}" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" TextChanged="TextBox_TextChanged" Height="31"/>
-        <ToggleButton Margin="31,101,192.6,138.4" Checked="ToggleButton_Checked"  Unchecked="ToggleButton_Unchecked" />
+        <TextBox x:Name="MyTextBox" HorizontalAlignment="Left" Margin="123,101,0,0" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" TextChanged="TextBox_TextChanged" Height="31"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="21,101,0,0" VerticalAlignment="Top" Width="75" Height="31" Click="Button_Click"/>
     </Grid>
 </Window>
