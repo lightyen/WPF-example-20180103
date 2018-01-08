@@ -20,13 +20,18 @@ namespace WpfApp1
             InitializeComponent();
 
             myWindow = new Window1();
-
+            
             Data = new List<Daddy>
             {
                 new Daddy { Name = "John", Money = 835593933832324142M },
                 new Daddy { Name = "Alisa", Money = 7120242M },
             };
+
             this.DataContext = this;
+
+            var collection = this.Resources["MyCollection1"] as MyCollection;
+            collection.Add(new Daddy { Name = "John", Money = 835593933832324142M });
+            collection.Add(new Daddy { Name = "Alisa", Money = 7120242M });
         }
 
         public void MyDataGridSelectRow(int index)
@@ -47,6 +52,12 @@ namespace WpfApp1
         {
             myWindow.WindowClosed = true;
             myWindow.Close();
+        }
+
+        private void ListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Console.WriteLine("hello world");
+            myWindow.Show();
         }
     }
 
@@ -82,5 +93,10 @@ namespace WpfApp1
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+    public class MyCollection : System.Collections.ObjectModel.ObservableCollection<Daddy>
+    {
+
     }
 }

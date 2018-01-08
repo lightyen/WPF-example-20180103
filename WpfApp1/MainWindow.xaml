@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:MyCollection x:Key="MyCollection1" />
+    </Window.Resources>
     <Grid>
         <Menu VerticalAlignment="Top" Margin="0,0,0,0">
             <Menu.ItemsPanel>
@@ -22,6 +25,19 @@
                 <MenuItem Header="HeHeHe" FontSize="14" Click="HeHeHe_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="MyDataGrid" HorizontalAlignment="Left" Height="207" Margin="134,72,0,0" VerticalAlignment="Top" Width="338" ItemsSource="{Binding Data}"/>
+        <ListView Margin="10,40,10.4,9.8" ItemsSource="{StaticResource MyCollection1}" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Money" Width="120" DisplayMemberBinding="{Binding Money}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <DataGrid x:Name="MyDataGrid" Visibility="Collapsed" HorizontalAlignment="Left" Height="207" Margin="134,72,0,0" VerticalAlignment="Top" Width="338" ItemsSource="{Binding Data}"/>
     </Grid>
 </Window>
